@@ -1,8 +1,9 @@
 #   PUMP CONTROL SOFTWARE
 
-Raspberry PI based pythong controls to run a peristaltic pump with a stepper moter
+Raspberry PI based python controls to run a peristaltic pump with a stepper moter
 
 #  Prototype
 
 The prototype has an expensive stepper control box and the controls are simple. 
-PRoductions protoype and productio units will have a more cost sensitive contoller system
+Productions protoype and production units will have a more cost sensitive controller system
+and the controlling software will need to add stepper coil controls. 
