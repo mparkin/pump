@@ -19,15 +19,14 @@ GPIO.setup(motor_4_pin, GPIO.OUT)
 GPIO.output(enable_pin, 1)
  
 def forward(delay, steps):
+    power = 0
+    GPIO.output(enable_pin, 1)
     for i in range(0, steps):
-        setStep(1, 1, 1, 1)
+        power = power ^1
+        setStep(power,power,power,power)
         time.sleep(delay)
-        setStep(0, 0, 0, 0)
-        time.sleep(delay)
-        setStep(1, 1, 1, 1)
-        time.sleep(delay)
-        setStep(0, 0, 0, 0)
-        time.sleep(delay)
+    GPIO.output(enable_pin, 0)
+
 def backwards(delay, steps):
     for i in range(0, steps):
         setStep(1, 0, 0, 1)
