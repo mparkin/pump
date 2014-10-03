@@ -24,7 +24,6 @@ def forward(delay, steps):
     for i in range(0, steps):
         power = power ^1
         setStep(power,power,power,power)
-        print "out"
         time.sleep(delay)
     GPIO.output(enable_pin, 0)
 
@@ -59,8 +58,8 @@ class Application(Frame):
         self.selrecipe["bg"]   = "green"
         self.RunRecipe["text"] = "Default Recipe"
         self.enable = TRUE
-        self.step= 10
-        self.delay = 0.5      
+        self.step= 10000
+        self.delay = 0.001      
         
     def state(self):
         if self.rstate == FALSE :
