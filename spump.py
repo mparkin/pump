@@ -24,6 +24,7 @@ def forward(delay, steps):
     for i in range(0, steps):
         power = power ^1
         setStep(power,power,power,power)
+        print "out"
         time.sleep(delay)
     GPIO.output(enable_pin, 0)
 
@@ -47,9 +48,9 @@ def setStep(w1, w2, w3, w4):
 
 class Application(Frame):
     
-    def setstate(caption,color,pstate,rcolor,rcaption):
+    def setstate(self,caption,color,pstate,rcolor,rcaption):
         self.status["text"] = caption
-        self.status["color"] = color
+        self.status["bg"] = color
         self.rstate = pstate
         self.run["text"] = rcaption
         self.run["bg"] = rcolor
@@ -58,18 +59,19 @@ class Application(Frame):
         self.selrecipe["bg"]   = "green"
         self.RunRecipe["text"] = "Default Recipe"
         self.enable = TRUE
-        self.step= 10000
-        self.delay = 500      
+        self.step= 10
+        self.delay = 0.5      
         
     def state(self):
         if self.rstate == FALSE :
             print "RUN"
             self.setstate("RUNNING","green",TRUE,"red","STOP")
+            time.sleep(.5)
             forward(self.delay, self.step)
 		        
-		else :
+	else :
             print "STOP"
-            self.setstate("STOPPED","red,FALSE,"green","START")
+            self.setstate("STOPPED","red",FALSE,"green","START")
 		
 	
     def createWidgets(self):
@@ -124,9 +126,9 @@ class Application(Frame):
         self.pack()
         self.createWidgets()
         self.rstate = FALSE
-		self.enable = FALSE
-		self.step= 0
-		self.delay = 0
+	self.enable = FALSE
+	self.step= 0
+	self.delay = 0
 
 root = Tk()
 app = Application(master=root)
