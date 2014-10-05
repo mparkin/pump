@@ -19,13 +19,14 @@ of other maintenance action is performed.
 
 2. Speed  - This table stores the delay between pulses that determines
 speed. These will be indexed by a unique character string
+
  | Field Name | Type |
  |------------|------|
  | Speed Name | Str[40]|
  | Pulse Wodth| float |
- 
 3. Recipes - Use selectable and defineable recipes to select the desired 
 speeds, volume etc.
+
 | Field Name | Type |
 |------------|------|
 | Recipe Name| str[40]|
@@ -34,12 +35,15 @@ speeds, volume etc.
 | Tube type| Tube Type |
 
 4. Tube Type = Where tube ID is specified for volume calculation
+
 |Field Name | Type |
 |-----------|------|
-| Rube Name | float|
+| Rube Name | text|
+| ID        | float|
 
 5. Records - a date indexed table of recordable pump actions. 
-Field Name | Type |
+
+|Field Name | Type |
 |----------|------|
 |Date      | DateTime|
 | Message  | char blob |
