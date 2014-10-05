@@ -12,6 +12,7 @@ has been selected to do this
 will store data in minutes. A record will be added to the table when the 
 user resets the time counter ( this will be done when the tube is replaced
 of other maintenance action is performed. 
+
  | Field Name | Type |
  |------------|------|
  | Start Time | DateTime |
@@ -24,6 +25,7 @@ speed. These will be indexed by a unique character string
  |------------|------|
  | Speed Name | Str[40]|
  | Pulse Wodth| float |
+
 3. Recipes - Use selectable and defineable recipes to select the desired 
 speeds, volume etc.
 
