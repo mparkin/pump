@@ -1,6 +1,7 @@
 from Tkinter import *
 import RPi.GPIO as GPIO
 import time
+import sqlite3
  
 GPIO.setmode(GPIO.BCM)
  
@@ -128,6 +129,9 @@ class Application(Frame):
 	self.enable = FALSE
 	self.step= 0
 	self.delay = 0
+    self.dbase=sqlite3.connect('pump.db')
+    self.curs = self.dbase.cursor()
+
 
 root = Tk()
 app = Application(master=root)
