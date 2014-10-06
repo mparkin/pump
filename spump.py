@@ -61,11 +61,13 @@ class Application(Frame):
         self.run["bg"] = rcolor
 		
     def select_recipe(self):
-        for row in self.curs.execute( "SELECT * FROM speed WHERE speedname='Normal'" ):
-            print row[1];
-            self.delay = row[1]
+        for row in self.curs.execute( "SELECT * FROM recipe WHERE recipename='Default'" ):
+            self.RunRecipe["text"] = row[0]
+            print row[0]
+        for row1 in self.curs.execute( "SELECT * FROM speed WHERE sppedname=(?)" , (row[0],1)):
+            self.delay = row1[1]
+            print self.delay
         self.selrecipe["bg"]   = "green"
-        self.RunRecipe["text"] = "Default Recipe"
         self.enable = TRUE
         self.step= 10000
      
