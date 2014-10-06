@@ -1,3 +1,5 @@
+#!/usr/bin/env puthon
+
 from Tkinter import *
 import RPi.GPIO as GPIO
 import time
@@ -56,11 +58,15 @@ class Application(Frame):
         self.run["bg"] = rcolor
 		
     def select_recipe(self):
+        for row in self.curs.execute("SELECT FROM speed WHERE speedname= 'Normal'")
+            print row[1];
+            self.delay = row[1]
         self.selrecipe["bg"]   = "green"
         self.RunRecipe["text"] = "Default Recipe"
         self.enable = TRUE
         self.step= 10000
-        self.delay = 0.001      
+       
+        #self.delay = 0.001      
         
     def state(self):
         if self.rstate == FALSE :
@@ -126,11 +132,11 @@ class Application(Frame):
         self.pack()
         self.createWidgets()
         self.rstate = FALSE
-	self.enable = FALSE
-	self.step= 0
-	self.delay = 0
-    self.dbase=sqlite3.connect('pump.db')
-    self.curs = self.dbase.cursor()
+        self.enable = FALSE
+        self.step= 0
+        self.delay = 0
+        self.dbase=sqlite3.connect('pump.db')
+        self.curs = self.dbase.cursor()
 
 
 root = Tk()
