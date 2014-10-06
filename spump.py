@@ -44,7 +44,7 @@ def backwards(delay, steps):
         setStep(1, 0, 1, 0)
         time.sleep(delay)
  
- def setStep(w1, w2, w3, w4):
+def setStep(w1, w2, w3, w4):
         GPIO.output(motor_1_pin, w1)
         GPIO.output(motor_2_pin, w2)
         GPIO.output(motor_3_pin, w3)
@@ -64,9 +64,9 @@ class Application(Frame):
         for row in self.curs.execute( "SELECT * FROM recipe WHERE recipename='Default'" ):
             self.RunRecipe["text"] = row[0]
             print row[0]
-        for row1 in self.curs.execute( "SELECT * FROM speed WHERE sppedname=(?)" , (row[0],1)):
-            self.delay = row1[1]
-            print self.delay
+            for row1 in self.curs.execute( "SELECT * FROM speed WHERE speedname=(?)" , (row[1],)):
+                self.delay = row1[1]
+                print self.delay
         self.selrecipe["bg"]   = "green"
         self.enable = TRUE
         self.step= 10000
