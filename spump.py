@@ -21,6 +21,9 @@ GPIO.setup(motor_4_pin, GPIO.OUT)
  
 GPIO.output(enable_pin, 1)
  
+ 
+ 
+ 
 def forward(delay, steps):
     power = 0
     GPIO.output(enable_pin, 1)
@@ -41,7 +44,7 @@ def backwards(delay, steps):
         setStep(1, 0, 1, 0)
         time.sleep(delay)
  
-def setStep(w1, w2, w3, w4):
+ def setStep(w1, w2, w3, w4):
         GPIO.output(motor_1_pin, w1)
         GPIO.output(motor_2_pin, w2)
         GPIO.output(motor_3_pin, w3)
@@ -58,15 +61,14 @@ class Application(Frame):
         self.run["bg"] = rcolor
 		
     def select_recipe(self):
-        for row in self.curs.execute("SELECT FROM speed WHERE speedname= 'Normal'")
+        for row in self.curs.execute( "SELECT * FROM speed WHERE speedname='Normal'" ):
             print row[1];
             self.delay = row[1]
         self.selrecipe["bg"]   = "green"
         self.RunRecipe["text"] = "Default Recipe"
         self.enable = TRUE
         self.step= 10000
-       
-        #self.delay = 0.001      
+     
         
     def state(self):
         if self.rstate == FALSE :
@@ -135,10 +137,11 @@ class Application(Frame):
         self.enable = FALSE
         self.step= 0
         self.delay = 0
-        self.dbase=sqlite3.connect('pump.db')
-        self.curs = self.dbase.cursor()
+        self.conn=sqlite3.connect('pump.db')
+        self.curs = self.conn.cursor()
+        
 
-
+ 
 root = Tk()
 app = Application(master=root)
 app.mainloop()
